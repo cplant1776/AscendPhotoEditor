@@ -20,9 +20,10 @@
                 </Grid>
 
                 <Image
+                    x:Name="selectedImage"
                     Grid.Row="0"
                     Aspect="Fill"
-                    Source="image_placeholder.png" />
+                    Source="{Binding imagePath}" />
 
                 <ListView Grid.Row="1" ItemsSource="{Binding Metadata}" />
             </StackLayout>

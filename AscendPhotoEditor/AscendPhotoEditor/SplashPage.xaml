@@ -49,12 +49,14 @@
                     <ImageButton
                         Grid.Row="0"
                         Grid.Column="0"
+                        Clicked="LocalFileClicked"
                         HorizontalOptions="Center"
                         Source="icon_local_file.png"
                         VerticalOptions="CenterAndExpand" />
                     <Button
                         Grid.Row="0"
                         Grid.Column="1"
+                        Clicked="LocalFileClicked"
                         Text="Local File" />
 
 
@@ -62,23 +64,27 @@
                     <ImageButton
                         Grid.Row="1"
                         Grid.Column="0"
+                        Clicked="GoogleDriveClicked"
                         HorizontalOptions="Center"
                         Source="icon_google_drive.png"
                         VerticalOptions="CenterAndExpand" />
                     <Button
                         Grid.Row="1"
                         Grid.Column="1"
+                        Clicked="GoogleDriveClicked"
                         Text="Google Drive - TBA" />
 
                     <ImageButton
                         Grid.Row="2"
                         Grid.Column="0"
+                        Clicked="DropBoxClicked"
                         HorizontalOptions="Center"
                         Source="icon_dropbox.png"
                         VerticalOptions="CenterAndExpand" />
                     <Button
                         Grid.Row="2"
                         Grid.Column="1"
+                        Clicked="DropBoxClicked"
                         Text="Dropbox - TBA" />
                 </Grid>
             </Grid>
