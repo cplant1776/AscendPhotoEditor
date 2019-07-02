@@ -19,13 +19,32 @@
                     </Grid.RowDefinitions>
                 </Grid>
 
+                <!--<Image
+                    x:Name="selectedImage"
+                    Grid.Row="0"
+                    Aspect="Fill"
+                    Source="{Binding imagePath}"
+                    />-->
+
                 <Image
                     x:Name="selectedImage"
                     Grid.Row="0"
                     Aspect="Fill"
-                    Source="{Binding imagePath}" />
+                    Source="image-placeholder.jpg" />
 
-                <ListView Grid.Row="1" ItemsSource="{Binding Metadata}" />
+                <!--<TableView Intent="Form">
+                    <TableRoot>
+                        <TableSection Title="Metadata">
+                            <EntryCell
+                                HorizontalTextAlignment="Center"
+                                Label="Tester Entry"
+                                Text="sup" />
+                        </TableSection>
+                    </TableRoot>
+                </TableView>-->
+
+                <ListView x:Name="metadataListView" HorizontalOptions="Center" />
+
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
