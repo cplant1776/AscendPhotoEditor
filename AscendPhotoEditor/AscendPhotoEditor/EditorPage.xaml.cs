@@ -25,31 +25,45 @@ namespace AscendPhotoEditor
             //selectedImage.Source = imagePath;
             selectedImage.Source = ImageSource.FromStream(() => new MemoryStream(imageData));
 
+
+            //Create list to store metadata items
+            List<MetadataEntry> metadataList = new List<MetadataEntry>();
+
             // Extract metadata from image
             using (imageStream)
             {
                 Console.WriteLine("Opened image stream . . . ");
+                string itemDetails = "";
                 // Get jpeg data
                 var jpegMetadata = ExifReader.ReadJpeg(imageStream);
+                JpegInfo x = new JpegInfo();
 
+                // Read metadata properties into list
                 PropertyInfo[] properties = typeof(JpegInfo).GetProperties();
                 int n = 0;
                 foreach (PropertyInfo property in properties)
                 {
-                    Console.WriteLine("{0} || {1} || {2}", n, property, property.GetValue(jpegMetadata, null));
+                    Console.WriteLine("{0} || {1} || {2}", n, property, property.GetValue(jpegMetadata));
+                    try
+                    {
+                        itemDetails = property.GetValue(jpegMetadata) as string;
+                        Console.WriteLine("itemDetails => |{0} || {1} |", itemDetails, property.GetValue(jpegMetadata));
+                    }
+                    catch (InvalidCastException) {
+                        Console.WriteLine("INVALID CAST => {0}", property.GetValue(jpegMetadata));
+                    }
                     n += 1;
+
+                    metadataList.Add(new MetadataEntry(itemType: property.Name, itemDetails: itemDetails));
                 }
             }
-            
-            
-            // Get Image metadata
-            //List<MetadataEntry> metadataList = new List<MetadataEntry>();
 
-            //Dummy data for testing
+            //Dummy data for testing 
+            /*
             List<MetadataEntry> metadataList = new List<MetadataEntry>();
             metadataList.Add(new MetadataEntry("one", "111"));
             metadataList.Add(new MetadataEntry("two", "222"));
-            metadataList.Add(new MetadataEntry("three", "333"));
+            metadataList.Add(new MetadataEntry("three", "333")); */
 
             // Set metadata list
             metadataListView.ItemsSource = metadataList;
