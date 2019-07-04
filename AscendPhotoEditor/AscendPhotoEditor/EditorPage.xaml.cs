@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,19 +10,38 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
+using ExifLib;
 
 namespace AscendPhotoEditor
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EditorPage : ContentPage
     {
-        public EditorPage(string imagePath)
+        public EditorPage(byte[] imageData, Stream imageStream)
         {
             InitializeComponent();
 
-            // Set image
-            selectedImage.Source = imagePath;
+            // Reconstruct image from byte array
+            //selectedImage.Source = imagePath;
+            selectedImage.Source = ImageSource.FromStream(() => new MemoryStream(imageData));
 
+            // Extract metadata from image
+            using (imageStream)
+            {
+                Console.WriteLine("Opened image stream . . . ");
+                // Get jpeg data
+                var jpegMetadata = ExifReader.ReadJpeg(imageStream);
+
+                PropertyInfo[] properties = typeof(JpegInfo).GetProperties();
+                int n = 0;
+                foreach (PropertyInfo property in properties)
+                {
+                    Console.WriteLine("{0} || {1} || {2}", n, property, property.GetValue(jpegMetadata, null));
+                    n += 1;
+                }
+            }
+            
+            
             // Get Image metadata
             //List<MetadataEntry> metadataList = new List<MetadataEntry>();
 
@@ -31,11 +52,12 @@ namespace AscendPhotoEditor
             metadataList.Add(new MetadataEntry("three", "333"));
 
             // Set metadata list
-
             metadataListView.ItemsSource = metadataList;
             metadataListView.ItemTemplate = new DataTemplate(typeof(EntryCell));
             metadataListView.ItemTemplate.SetBinding(EntryCell.LabelProperty, "ItemType");
             metadataListView.ItemTemplate.SetBinding(EntryCell.TextProperty, "ItemDetails");
+            
+
         }
     }
 

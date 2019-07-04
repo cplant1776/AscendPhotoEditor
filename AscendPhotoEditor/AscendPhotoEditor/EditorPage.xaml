@@ -32,17 +32,6 @@
                     Aspect="Fill"
                     Source="image-placeholder.jpg" />
 
-                <!--<TableView Intent="Form">
-                    <TableRoot>
-                        <TableSection Title="Metadata">
-                            <EntryCell
-                                HorizontalTextAlignment="Center"
-                                Label="Tester Entry"
-                                Text="sup" />
-                        </TableSection>
-                    </TableRoot>
-                </TableView>-->
-
                 <ListView x:Name="metadataListView" HorizontalOptions="Center" />
 
             </StackLayout>

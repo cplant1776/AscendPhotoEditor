@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,36 +28,42 @@ namespace AscendPhotoEditor
                 FileData fileData = await CrossFilePicker.Current.PickFile();
                 // User canceled file picking
                 if (fileData == null)
-                    return; 
+                    return;
 
                 // Check file name, path, and data - for debugging purposes
+                Console.Write("Attempting to print file info . . . ");
                 string fileName = fileData.FileName;
                 string filePath = fileData.FilePath;
                 string contents = System.Text.Encoding.UTF8.GetString(fileData.DataArray);
-                System.Console.WriteLine("File name chosen: " + fileName);
-                System.Console.WriteLine("File path: " + filePath);
-                System.Console.WriteLine("File data: " + contents);
+                Console.WriteLine("File name chosen: " + fileName);
+                Console.WriteLine("File path: " + filePath);
+                //System.Console.WriteLine("File data: " + contents);
 
-                // Move to Editor Page
-                await Navigation.PushAsync(new EditorPage(imagePath: filePath));
+                // Get data needed for editor
+                Console.WriteLine("Creating Stream . . .");
+                Stream imageStream = fileData.GetStream();
+                Console.WriteLine("Creating byte array . . . ");
+                byte[] imageData = fileData.DataArray;
+                Console.WriteLine("SWITCHING PAGES....");
+                await Navigation.PushAsync(new EditorPage(imageData: imageData, imageStream: imageStream));
             }
             catch (Exception ex)
             {
-                System.Console.WriteLine("Exception choosing file: " + ex.ToString());
+                Console.WriteLine("Exception choosing file: " + ex.ToString());
             }
         }
 
         async void DropBoxClicked(object sender, EventArgs e)
         {
-            //TODO - currently just goes to Editor Page
-            await Navigation.PushAsync(new EditorPage(imagePath: "image_placeholder.png"));
+            //TODO
+           // await Navigation.PushAsync(new EditorPage(imagePath: "image_placeholder.png"));
 
         }
 
         async void GoogleDriveClicked(object sender, EventArgs e)
         {
-            //TODO - currently just goes to Editor Page
-            await Navigation.PushAsync(new EditorPage(imagePath: "image_placeholder.png"));
+            //TODO
+           // await Navigation.PushAsync(new EditorPage(imagePath: "image_placeholder.png"));
         }
     }
 }
