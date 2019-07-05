@@ -120,5 +120,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\image_placeholder.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="strong_bad.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

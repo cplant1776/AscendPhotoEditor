@@ -22,7 +22,6 @@ namespace AscendPhotoEditor
             InitializeComponent();
 
             // Reconstruct image from byte array
-            //selectedImage.Source = imagePath;
             selectedImage.Source = ImageSource.FromStream(() => new MemoryStream(imageData));
 
 
@@ -36,7 +35,6 @@ namespace AscendPhotoEditor
                 string itemDetails = "";
                 // Get jpeg data
                 var jpegMetadata = ExifReader.ReadJpeg(imageStream);
-                JpegInfo x = new JpegInfo();
 
                 // Read metadata properties into list
                 PropertyInfo[] properties = typeof(JpegInfo).GetProperties();

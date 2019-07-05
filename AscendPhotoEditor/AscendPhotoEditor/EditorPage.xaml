@@ -19,20 +19,21 @@
                     </Grid.RowDefinitions>
                 </Grid>
 
-                <!--<Image
-                    x:Name="selectedImage"
+                <Frame
                     Grid.Row="0"
-                    Aspect="Fill"
-                    Source="{Binding imagePath}"
-                    />-->
+                    Padding="0"
+                    BackgroundColor="Black"
+                    OutlineColor="Black">
+                    <Image
+                        x:Name="selectedImage"
+                        Aspect="AspectFit"
+                        Source="image_placeholder.png" />
+                </Frame>
 
-                <Image
-                    x:Name="selectedImage"
-                    Grid.Row="0"
-                    Aspect="Fill"
-                    Source="image-placeholder.jpg" />
-
-                <ListView x:Name="metadataListView" HorizontalOptions="Center" />
+                <ListView
+                    x:Name="metadataListView"
+                    Grid.Row="1"
+                    HorizontalOptions="Center" />
 
             </StackLayout>
         </ScrollView>
