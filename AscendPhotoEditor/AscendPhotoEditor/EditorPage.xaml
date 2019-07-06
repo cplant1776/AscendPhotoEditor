@@ -7,35 +7,33 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                    </Grid.RowDefinitions>
-                </Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
 
-                <Frame
-                    Grid.Row="0"
-                    Padding="0"
-                    BackgroundColor="Black"
-                    OutlineColor="Black">
-                    <Image
-                        x:Name="selectedImage"
-                        Aspect="AspectFit"
-                        Source="image_placeholder.png" />
-                </Frame>
 
-                <ListView
-                    x:Name="metadataListView"
-                    Grid.Row="1"
-                    HorizontalOptions="Center" />
+            <Frame
+                Grid.Row="0"
+                Padding="0"
+                BackgroundColor="Black"
+                OutlineColor="Black">
+                <Image
+                    x:Name="selectedImage"
+                    Aspect="AspectFit"
+                    Source="image_placeholder.png" />
+            </Frame>
 
-            </StackLayout>
-        </ScrollView>
+            <ListView
+                x:Name="metadataListView"
+                Grid.Row="1"
+                HorizontalOptions="Center" />
+
+
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

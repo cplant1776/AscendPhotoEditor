@@ -44,7 +44,7 @@ namespace AscendPhotoEditor
                     Console.WriteLine("{0} || {1} || {2}", n, property, property.GetValue(jpegMetadata));
                     try
                     {
-                        itemDetails = property.GetValue(jpegMetadata) as string;
+                        itemDetails = String.Format("{0}", property.GetValue(jpegMetadata));
                         Console.WriteLine("itemDetails => |{0} || {1} |", itemDetails, property.GetValue(jpegMetadata));
                     }
                     catch (InvalidCastException) {
