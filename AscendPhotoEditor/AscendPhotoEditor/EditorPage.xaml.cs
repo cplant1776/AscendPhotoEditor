@@ -56,13 +56,6 @@ namespace AscendPhotoEditor
                 }
             }
 
-            //Dummy data for testing 
-            /*
-            List<MetadataEntry> metadataList = new List<MetadataEntry>();
-            metadataList.Add(new MetadataEntry("one", "111"));
-            metadataList.Add(new MetadataEntry("two", "222"));
-            metadataList.Add(new MetadataEntry("three", "333")); */
-
             // Set metadata list
             metadataListView.ItemsSource = metadataList;
             metadataListView.ItemTemplate = new DataTemplate(typeof(EntryCell));
